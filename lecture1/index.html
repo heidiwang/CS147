@@ -2,38 +2,83 @@
 <html>
 	<head>
 		<title>Heidi's App</title>
+	
+		<!-- Mobile specifications -->
+		<link rel="apple-touch-icon" href="appicon.png" />
+		<link rel="apple-touch-startup-image" href="startup.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-webapp-status-bar-style" content="grey" />
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		
+		<script type= "text/JavaScript">
+			function buttonClick() {
+				alert("Hey");
+			}
+			
+		</script>
+		
+		<style type="text/css">
+			body {
+				background:#eee;
+				font-family: Helvetica, Arial, sans-serif;
+			}
+			h2, h3 {
+				font-size:22px;
+				color:#aaa;
+			}
+			.box {
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				margin: 3px;
+				float: left;
+			}
+			.invisibleSeal{
+				display: hidden;
+			}
+			.opacity {
+				opacity: 0.4;
+			}
+			
+			.button {
+				background:#333;
+				width:100px;
+				color:#fff;
+				height:20px;
+			     -moz-border-radius: 20px;
+			    -webkit-border-radius: 20px;
+			    -khtml-border-radius: 20px;
+			    border-radius: 20px;
+			    text-align:center;
+			}
+		</style>
 	</head>
 	
-	<style type="text/css">
-		body {
-			background:#eee;
-			font-family: Helvetica, Arial, sans-serif;
-		}
-		h2, h3 {
-			font-size:22px;
-			font-weight:300;
-			color:#aaa;
-		}
-	</style>
-	
 	<body>
-	 		<h2>Heidi Wang</h2>
-		
-			<div id='bio'>Crime-solver. Noir detective extraordinaire.</div>
+	 		<div id='bio'>
+			<h2>Heidi Wang</h2>Hello hello.
+		</div>
 	 
 	 	<h3>Assignments</h3>
 		<ul id='assignments'>
-			<li>Go undercover</li>
-			<li>Learn HTML</li>
+			<li>Hi</li>
+			<li>Bye</li>
 		</ul>
 	
 		<h3>A nice button</h3>
+		
+		<div class="button" onclick="buttonClick();">Click Me</div>
 
 		<h3>An invisible seal</h3>
+		<img src="seal.png" id="invisibleSeal" class="opacity">
 
 		<h3>A video</h3>
+		<video width="300" height="240" controls="controls">
+		  <source src="gizmo.mp4" type="video/mp4" />
+		</video>
 
 		<h3>Two boxes side by side</h3>
+		<div class="box"></div><div class="box"></div>
 
 	</body>
 </html>
