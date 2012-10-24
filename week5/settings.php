@@ -29,31 +29,7 @@
 	</div><!-- /header -->
 
 	<div data-role="content">	
-		<p></p>
-		<ul data-role="listview" data-inset="true" data-filter="true">
-			<li><a href="#">Barack Obama</a></li>
-			<li><a href="#">Mitt Romney</a></li>
-			<li><a href="#">Peta Lindsay</a></li>
-			<li><a href="#">Rocky Anderson</a></li>
-			<li><a href="#">Virgil Goode</a></li>
-			<li><a href="#">Jill Stein</a></li>
-			<li><a href="#">Gary Johnson</a></li>
-		</ul>
-		
-		<ul data-role="listview" data-inset="true">
-			<li class="taphold">Tap and hold me</li>
-			<li class="tap">Tap me</li>			
-			<li class="swiperight">Swipe me right</li>
-			<li class="swipeleft">Swipe me left</li>
-		</ul>
-		
-		<a href="#" data-role="button" data-icon="star">Star button</a>
-
-		<div data-role="collapsible">
-		   <h3>I'm a header</h3>
-		   <p>I'm the collapsible content. By default I'm closed, but you can click the header to open me.</p>
-		</div>
-	
+			
 	<form action="submit.php" method="post">
 		<div data-role="fieldcontain">
 	     <label for="foo">Text Input:</label>
