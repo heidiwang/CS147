@@ -20,6 +20,7 @@
 		?>
 		
 		<div class="orderarea">
+		
 		<?php
 		
 			include("config.php");
@@ -48,7 +49,7 @@
 			// Insert into orders
 			// but oops query is not defined... yet
 			
-			$query = "";
+			$query = "INSERT INTO  orders VALUES ('$name', '$email', '$book')";
 			
 			$result = mysql_query($query);
 			
