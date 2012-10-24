@@ -30,8 +30,19 @@
 	<div data-role="content">	
 		
 		<?php
-		// This is a hack. You should connect to a database here.
-		if ($_POST["username"] == "oi") {
+		
+		include("config.php");
+		
+		$username = $_POST["username"];
+		$password = $_POST["password"];
+		
+		$query = "SELECT * FROM week5users WHERE username='$username' and password='$password'";
+		
+		$result = mysql_query($query);
+		$count = mysql_num_rows($result);
+			
+		if ($count == 1) {
+			echo "<p>Thank you, <strong>".$_POST["username"]."</strong>. You are now logged in.</p>";
 			?>
 			<script type="text/javascript">
 				// Save the username in local storage. That way you
@@ -39,13 +50,11 @@
 				localStorage.setItem('username', '<?=$_POST["username"]?>');
 			</script>
 			<?php
-			echo "<p>Thank you, <strong>".$_POST["username"]."</strong>. You are now logged in.</p>";
 		} else {
 			echo "<p>There seems to have been an error.</p>";
 		}
-			
-
 		?>
+
 	</div><!-- /content -->
 
 	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">

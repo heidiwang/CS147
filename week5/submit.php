@@ -1,43 +1,76 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
+	<head>
+		<title>Maya Online Books</title>
+		<link rel="apple-touch-icon" href="appicon.png" />
+		<link rel="apple-touch-startup-image" href="startup.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 
-<head>
-	<title>VoteCaster | Submit</title> 
-	<meta charset="utf-8">
-	<meta name="apple-mobile-web-app-capable" content="yes">
- 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link href="style.css" rel="stylesheet" type="text/css">
+	</head>
 
-	<link rel="stylesheet" href="jquery.mobile-1.2.0.css" />
-	<link rel="stylesheet" href="style.css" />
-	<link rel="apple-touch-icon" href="appicon.png" />
-	<link rel="apple-touch-startup-image" href="startup.png">
-	
-	<script src="jquery-1.8.2.min.js"></script>
-	<script src="jquery.mobile-1.2.0.js"></script>
-
-</head> 
-<body> 
-
-<div data-role="page">
-
-	<div data-role="header">
-		<h1>My Title</h1>
-
-	</div><!-- /header -->
-
-	<div data-role="content">	
-		<p>Hello world</p>	
+	<body>
+	
+		<div class="banner"></div>
 		<?php
-		echo "<p>flip_s: ".$_POST["flip_s"]."</p>";
-		echo "<p>gender: ".$_POST["gender"]."</p>";
-		echo "<p>slider: ".$_POST["slider"]."</p>";
-		echo "<p>name: ".$_POST["name"]."</p>";
-		echo "<p>select-shipper: ".$_POST["select-shipper"]."</p>";
+		include("menu.php");
 		?>
-		<p>I think this page is missing a footer.</p>
-	</div><!-- /content -->
-
-
-</body>
+		
+		<div class="orderarea">
+		
+		<?php
+		
+			include("config.php");
+			function sendmail($email, $name, $title)
+			{
+			    
+			    $to      = $email;
+			    $subject = 'Maya Order Confirmation';
+			    $message = 'Hello '.$name.',<br /><br />This email is to confirm your order for the following book from Maya:<br /><br /><strong>'.$title.'</strong><br /><br />Please wait for the next update email which will contain shipping information.';
+			    $headers = 'From: Maya Book Service <info@mayabooks.com>' . "\r\n" .
+			    'MIME-Version: 1.0' . "\r\n" .
+			    'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+			    'Reply-To: Maya Book Service <mayabooks@mayabooks.com>' . "\r\n" .
+			    'X-Mailer: PHP/' . phpversion();
+			    
+			    mail($to, $subject, $message, $headers);
+			    
+			}
+			
+			// Take in parameters
+			$name = $_POST["name"];
+			$book = $_POST["book"];
+			$email = $_POST["email"];
+			$t = time();
+			
+			// Insert into orders
+			// but oops query is not defined... yet
+			
+			$query = "INSERT INTO  orders VALUES ('$name', '$email', '$book')";
+			
+			$result = mysql_query($query);
+			
+			if ($result) {
+				// What do the following lines do? Answer -> #1
+				$query2 = "SELECT * from books where asin = '".$book."'";
+				$result2 = mysql_query($query2);
+				$row2 = mysql_fetch_assoc($result2);
+				sendmail($email, $name, $row2["title"]);
+				echo "<p>Thank you for ordering a book. Please check your email for further instructions.</p>";
+					
+			}
+			
+			
+			?>
+		</div>
+		<script type="text/javascript">
+		$("a").click(function (event) {
+		    event.preventDefault();
+		    window.location = $(this).attr("href");
+		});
+		</script>
+	</body>
 </html>
